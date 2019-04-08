@@ -19,7 +19,7 @@
         <div class="right">
           <p class="label">{{item.name}}</p>
           <p class="detail">{{item.summary}}</p>
-          <div><a href="javascript:;">了解更多 ></a></div>
+          <div><el-button type="primary" @click="more(item.ID)">了解更多</el-button></div>
         </div>
         </el-col>
       </el-row>  
@@ -47,6 +47,10 @@ export default {
              }
             });
          },
+         more(ID){
+             this.$router.push({name:'BusinessDetail',params:{id:ID}});//类似post传参
+
+         }
         },
         watch:{
           '$route':{
@@ -78,7 +82,7 @@ components:{
 ,.main-service p.title span{color: #2db5a3;}
 .main-business .content{border: 1px solid #DEDEDE; padding: 30px 36px 0 36px; text-align: center; transition: 0.3s;}
 .main-business .content p.label{font-size: 18px; color: #939393; line-height: 46px; padding-top: 6px;}
-.main-business .content a{text-decoration:none;font-size: 18px; color: #a1d8cb; line-height: 68px;}
+.main-business .content .more{text-decoration:none;font-size: 18px; color: #a1d8cb; line-height: 68px;}
 .main-business .content:hover{box-shadow: 0 0 3px 3px #EEE; transition: 0.3s;}
 .main-business .content img{transition: 2s;}
 .main-business .content img:hover{transform: rotateY(180deg);}
@@ -92,7 +96,7 @@ components:{
 .main.business .content .content-img img{width: 90%;}
 .main.business .content .label{color: #565656; font-size: 30px; line-height: 78px; margin-top: 32px;}
 .main.business .content .detail{font-size: 16px; line-height: 28px; color: #d7d7d7; padding-bottom: 30px;}
-.main.business .content a{text-decoration:none;color: #a0d2cc; font-size: 16px; line-height: 38px; padding:10px 11px 10px 23px; border: 1px solid #a0d2cc; border-radius: 3px;}
+.main.business .content .more{text-decoration:none;color: #a0d2cc; font-size: 16px; line-height: 30px; padding:10px 11px 10px 23px; border: 1px solid #a0d2cc; border-radius: 3px;width:80px;height:30px;}
 
 .banner .title{padding-top: 60px;}
 .banner .title:active{padding-top: 60px; transition: 1.5s;}

@@ -219,11 +219,11 @@ text-align:left;
   margin-right:20px;
    color:#888;
 }
-.business{
+#zjIndex .business{
   width:995px;
   margin:0px auto;
 }
-.business li{
+#zjIndex .business li{
   list-style:none;
    box-sizing: border-box;
   float:left;
@@ -231,14 +231,14 @@ text-align:left;
    height:170px;
    opacity:.7;
 }
-.business li:hover{
+#zjIndex .business li:hover{
   list-style:none;
    box-sizing: border-box;
   float:left;
   margin:36px;
   opacity:1;
 }
-.business img{
+#zjIndex .business .card img{
 width:160px;
 height:120px;
  background-color:#409EFF;

@@ -7,6 +7,7 @@ import Login from '@/components/login'
 import News from '@/components/news'
 import NewsDetail from '@/components/newsDetail'
 import Business from '@/components/business'
+import BusinessDetail from '@/components/businessDetail'
 import Employ from '@/components/employ'
 
 Vue.use(Router)
@@ -42,12 +43,16 @@ export default new Router({
         name:'NewsDetail',
         component:NewsDetail
       }]
-    },
-   
+    }, 
     {
       path:'/business',
       name:'Business',
       component:Business,
+    },
+    {
+      path:'/businessDetail',
+      name:'BusinessDetail',
+      component:BusinessDetail
     },
     {
       path:'/employ',

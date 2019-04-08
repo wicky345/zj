@@ -41,7 +41,7 @@ app.get('/api/test',function (req,res) {
 })
 
 app.get('/api/business',function (req,res) {
-  var selectSql = 'select ID,src,name,summary from business '
+  var selectSql = 'select ID,src,name,summary from business'
  
   connection.query(selectSql ,"",function (err, result) {
     if(err){
@@ -50,8 +50,22 @@ app.get('/api/business',function (req,res) {
     }
     res.end(JSON.stringify(result));
   });
-})
-
+}),
+//用于业务详细介绍
+app.post('/api/businessDetail',urlencodedParser,function (req,res) {
+  var  name=req.body.name;
+  var selectSql = 'select * from business   where ID=?';
+  var params=[name];
+  connection.query(selectSql ,params,function (err, result) {
+    if(err){
+      console.log(err.message);
+      return;
+    }
+    console.log('businessdetail操作被执行');
+    console.log(result);
+    res.end(JSON.stringify(result));
+  });
+}),
 app.get('/api/employ',function (req,res) {
   var selectSql = 'select * from employ '
  
