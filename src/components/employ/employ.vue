@@ -4,6 +4,7 @@
   <!-- banner部分 -->
   <div class="banner employ">
     <div class="title">
+      <!-- <p>{{employData}}</p> -->
       <p>招聘信息</p>
       <p class="en">recruitment information</p>
     </div>
@@ -58,7 +59,7 @@
        <template slot-scope="scope">
         <el-button
           size="mini"
-          @click="handleEdit(scope.$index, scope.row)">了解更多</el-button>
+          @click="getMore(scope.row)">了解更多</el-button>
           </template>
       </el-table-column>
     </el-table>
@@ -76,8 +77,8 @@
   </template>
 
   <script>
-import zjHeader from '../components/header'
-import zjFooter from '../components/footer'
+import zjHeader from '@/components/header'
+import zjFooter from '@/components/footer'
 export default {
     data(){
         return{
@@ -92,9 +93,9 @@ export default {
              }
             });
          },
-           handleEdit(index, row) {
-        console.log(index, row);
-      },
+      getMore(row){
+       this.$router.push({name:'EmployDetail',params:{id:row.ID}});
+      }
         },
         watch:{
           '$route':{

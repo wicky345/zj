@@ -31,8 +31,8 @@
   </template>
 
   <script>
-import zjHeader from '../components/header'
-import zjFooter from '../components/footer'
+import zjHeader from '@/components/header'
+import zjFooter from '@/components/footer'
 export default {
     data(){
         return{

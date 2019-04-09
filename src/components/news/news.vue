@@ -17,7 +17,7 @@
           <div>
             <div class="news-img"><a href="newsDetail.html"><img src="/static/img/news_img1.jpg"></a></div><div class="news-panel">
               <strong><a href="newsDetail.html">{{item.title}}</a></strong>
-              <p class="detail"><span>{{item.summary}}</span><router-link to="/newsDetail"><span>[详细]</span></router-link></p>
+              <p class="detail"><span>{{item.summary}}</span><span @click="getMore(item.ID)">[详细]</span></p>
               <p class="read-push">点赞 <span>{{item.n_like}}</span>&nbsp;&nbsp;&nbsp;&nbsp;发布时间：<span>{{item.postTime}}</span></p>
             </div>
           </div>
@@ -96,8 +96,8 @@
   <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 <script>
-import zjHeader from '../components/header'
-import zjFooter from '../components/footer'
+import zjHeader from '@/components/header'
+import zjFooter from '@/components/footer'
 export default {
     data(){
         return{
@@ -105,12 +105,18 @@ export default {
          }
         },
         methods:{
+          //通过axios获取数据
             init(){
              this.$api.get('/api/news', "", response => {
              if (response.status == 200) {
               this.newsData = response.data;
              }
             });
+         },
+         //跳转到新闻详细页面
+         getMore(ID){
+           //通过post传参
+           this.$router.push({name:'NewsDetail',params:{id:ID}});
          },
            handleEdit(index, row) {
         console.log(index, row);

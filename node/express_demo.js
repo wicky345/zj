@@ -25,9 +25,20 @@ app.get('/api/news',function (req,res) {
     }
     res.end(JSON.stringify(result));
   });
+}),
+//用于获取新闻详情
+app.post('/api/newsDetail',urlencodedParser,function (req,res){
+  var name=req.body.name;
+  var selectSql='select * from news where ID=?';
+  var params=[name];
+  connection.query(selectSql,params,function(err,result){
+    if(err){
+      console.log(err.message);
+      return;
+    }
+     res.end(JSON.stringify(result));
+  })
 })
-
-
 app.get('/api/test',function (req,res) {
   var selectSql = 'select * from student '
  
@@ -61,8 +72,6 @@ app.post('/api/businessDetail',urlencodedParser,function (req,res) {
       console.log(err.message);
       return;
     }
-    console.log('businessdetail操作被执行');
-    console.log(result);
     res.end(JSON.stringify(result));
   });
 }),
@@ -77,7 +86,20 @@ app.get('/api/employ',function (req,res) {
     res.end(JSON.stringify(result));
   });
 })
-
+//用于招聘详细介绍
+app.post('/api/employDetail',urlencodedParser,function (req,res) {
+  var  name=req.body.name;
+  var selectSql = 'select * from employ  where ID=?';
+  var params=[name];
+  connection.query(selectSql ,params,function (err, result) {
+    if(err){
+      console.log(err.message);
+      return;
+    }
+    console.log(result);
+    res.end(JSON.stringify(result));
+  });
+})
 var server = app.listen(8088, function () {
   var host = server.address().address;
    var port = server.address().port;

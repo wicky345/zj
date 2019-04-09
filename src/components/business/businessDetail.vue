@@ -16,8 +16,8 @@
   </div>
 </template>
 <script>
-import zjHeader from '../components/header'
-import zjFooter from '../components/footer'
+import zjHeader from '@/components/header'
+import zjFooter from '@/components/footer'
 export default{
     data(){
         return{
@@ -34,6 +34,7 @@ export default{
          },
         },
         watch:{
+          //检测路由，当路由发生变化时重新获取数据
           '$route':{
               handler(route){
                   if(route.name==='businessDetail'){

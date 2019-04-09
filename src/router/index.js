@@ -4,11 +4,12 @@ import Index from '@/components/index'
 import Introduction from '@/components/introduction'
 import Credit from '@/components/credit'
 import Login from '@/components/login'
-import News from '@/components/news'
-import NewsDetail from '@/components/newsDetail'
-import Business from '@/components/business'
-import BusinessDetail from '@/components/businessDetail'
-import Employ from '@/components/employ'
+import News from '@/components/news/news'
+import NewsDetail from '@/components/news/newsDetail'
+import Business from '@/components/business/business'
+import BusinessDetail from '@/components/business/businessDetail'
+import Employ from '@/components/employ/employ'
+import EmployDetail from '@/components/employ/employDetail'
 
 Vue.use(Router)
 
@@ -38,12 +39,12 @@ export default new Router({
       path:'/news',
       name:'News',
       component:News,
-      children:[{
-        path:'/newsDetail',
-        name:'NewsDetail',
-        component:NewsDetail
-      }]
     }, 
+    {
+      path:'/newsDetail',
+      name:'NewsDetail',
+      component:NewsDetail
+    },
     {
       path:'/business',
       name:'Business',
@@ -58,6 +59,11 @@ export default new Router({
       path:'/employ',
       name:'Employ',
       component:Employ,
+    },
+    {
+      path:'/employDetail',
+      name:'EmployDetail',
+      component:EmployDetail,
     }
   ],
   mode:'history',
