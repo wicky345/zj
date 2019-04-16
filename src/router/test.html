@@ -1,50 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+
+  <title>horizontal order</title>
+<style>
+    .test{width:180px;border:1px solid #000;height:200px;border-radius:18px;}
+    .test .top{
+        background-color:aliceblue;
+        border-radius:18px 18px 0px 0px;
+        text-align:center;
+    }
+    .test .content{
+        background-color:aqua;
+        width:180px;
+    }
+    .test .content ul li{
+        list-style: none;
+        float:left;
+        width:180px;
+    }
+
+</style>
+
+
 </head>
 <body>
-    <div id="left">Left sidebar</div>
-
-    <div id="content">Main Content</div>
-    
-     
-    
-    <style type="text/css">
-    
-    *{
-    
-    margin: 0;
-    
-    padding: 0;
-    
-    }
-    
-     
-    
-    #left {
-    
-    float: left;
-    
-    width: 220px;
-    
-    background-color: green;
-    
-    }
-    
-     
-    
-    #content {
-    
-    background-color: orange;
-    
-    margin-left: 220px;/*==等于左边栏宽度==*/
-    
-    }
-    
-    </style> 
+  <div class="test">
+      <div class="top">头部</div>
+      <div class="content">
+       <ul>
+       <li>内容1</li>
+       <li>内容2</li>
+       <li>内容3</li>
+       </ul>
+      </div>
+  </div>
 </body>
 </html>

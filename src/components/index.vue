@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="index">
 <zj-header></zj-header>
 <div id="zjIndex">
   <el-carousel :interval="5000" arrow="always" >
@@ -21,41 +21,34 @@
     <div class="abcontent">
   <img src="/static/img/home_card01.png"/>
   <ul>
-    <li>公司简介<i class="el-icon-d-arrow-right"></i></li>
-    <li>荣誉展示<i class="el-icon-d-arrow-right"></i></li>
+    <li><router-link to="/introduction" class="link">公司简介<i class="el-icon-d-arrow-right"></i></router-link></li>
+    <li><router-link to="/credit" class="link">荣誉展示<i class="el-icon-d-arrow-right"></i></router-link></li>
   </ul>
     </div>
     </div>
     <h2>企业动态</h2>
     <div class="news1">
-      <img src="/static/img/home_card01.png"/>
+     <img src="/static/img/home_card01.png">
     <div class="newscontent">
-      <h3>这是新闻标题</h3>
-      <h4>这是新闻正文这是新闻正文这是新闻正文这是新闻正文这是新闻正文这是新闻正文这是新闻正文这是新闻正文这是新闻正文这是新闻正文这是新闻正文这是新闻正文</h4>
-      <el-button type="primary">了解更多</el-button>
+      <h3>{{news1.title}}</h3>
+      <h4>{{news1.summary}}</h4>
+      <h4>发布时间： {{news1.postTime}}</h4>
+      <el-button type="primary" @click="newsMore(news1.ID)">了解更多</el-button>
       </div>
       </div>
        <div class="news2">
     <div class="newscontent">
-      <h3>这是新闻标题</h3>
-      <h4>这是新闻正文这是新闻正文这是新闻正文这是新闻正文这是新闻正文这是新闻正文这是新闻正文这是新闻正文这是新闻正文这是新闻正文这是新闻正文这是新闻正文</h4>
+      <h3>{{news2.title}}</h3>
+      <h4>{{news2.summary}}</h4>
+      <h4>发布时间： {{news2.postTime}}</h4>
       <el-button type="primary">了解更多</el-button>
       </div>
      <img src="/static/img/home_card01.png"/>
       </div>
       <h2>业务领域</h2>
-      <ul class="business">
-        <li><div class="card"><img src="/static/img/home_card01.png"><h3>优质的服务</h3></div></li>
-        <li><div class="card"><img src="/static/img/home_card02.png"><h3>丰富的经验</h3></div></li>
-        <li><div class="card"><img src="/static/img/home_card03.png"><h3>完美的售后</h3></div></li>
-        <li><div class="card"><img src="/static/img/home_card01.png"><h3>优质的服务</h3></div></li>
-      </ul>
-       <ul class="business">
-        <li><div class="card"><img src="/static/img/home_card01.png"><h3>优质的服务</h3></div></li>
-        <li><div class="card"><img src="/static/img/home_card02.png"><h3>丰富的经验</h3></div></li>
-        <li><div class="card"><img src="/static/img/home_card03.png"><h3>完美的售后</h3></div></li>
-        <li><div class="card"><img src="/static/img/home_card01.png"><h3>优质的服务</h3></div></li>
-      </ul>
+      <ul class="business" v-for="item in businessMsg" :key="item.ID">
+        <li><div class="card" @click="businessMore(item.ID)"><img v-bind:src="item.src"><h3>{{item.name}}</h3></div></li>
+        </ul>
       <h2>合作伙伴</h2>
       <ul class="partner">
         <li><div class="card"><img src="/static/img/合作伙伴1.jpg"></div></li>
@@ -135,11 +128,11 @@ width:160px;
 height:120px;
  background-color:#409EFF;
 }
-.card1 img{
+/* .card img{
   width:120px;
   height:120px;
   border-radius:50% 50%;
-}
+} */
 .aboutus {
 text-align:center;
 margin-top:20px;
@@ -173,6 +166,14 @@ margin-top:20px;
 }
 .aboutus ul li i{
   font-size:26px;
+}
+.aboutus ul .link{
+  text-decoration:none;
+  color:#1f2f3d;
+}
+.aboutus ul .link:hover{
+  text-decoration:none;
+  color:#888;
 }
 .aboutus .abcontent{
   background-color:#EDEDED;
@@ -219,11 +220,11 @@ text-align:left;
   margin-right:20px;
    color:#888;
 }
-#zjIndex .business{
+.index .business{
   width:995px;
   margin:0px auto;
 }
-#zjIndex .business li{
+ .business  li{
   list-style:none;
    box-sizing: border-box;
   float:left;
@@ -231,23 +232,23 @@ text-align:left;
    height:170px;
    opacity:.7;
 }
-#zjIndex .business li:hover{
+ .business  li:hover{
   list-style:none;
    box-sizing: border-box;
   float:left;
   margin:36px;
   opacity:1;
 }
-#zjIndex .business .card img{
+ .business  li  img{
 width:160px;
 height:120px;
  background-color:#409EFF;
 }
-.card1 img{
+/* .card img{
   width:120px;
   height:120px;
   border-radius:50% 50%;
-}
+} */
 .partner{
   width:995px;
   margin:0px auto;
@@ -278,11 +279,55 @@ export default {
         { id: "2", src: "/static/img/corn.jpg" },
         { id: "3", src: "/static/img/T.jpg" },
         { id: "4", src: "/static/img/mung.jpg" }
-      ]
+      ],
+      newsMsg:[],
+      businessMsg:[],
+      news1:'',
+      news2:'',
+      length:'',
+
     };
   },
-  methods: {
-  },
+    methods:{
+            init(){
+              //获取业务领域信息
+             this.$api.get('/api/business', "", response => {
+             if (response.status == 200) {
+              this.businessMsg = response.data;
+             }
+            });
+            //获取新闻信息
+            this.$api.get('/api/news', "", response => {
+             if (response.status == 200) {
+               this.length=response.data.length;
+              this.newsMsg = response.data;
+              this.news1=this.newsMsg[this.length-1];
+              this.news2=this.newsMsg[this.length-2];
+             }
+            });
+         },
+         businessMore(ID){
+             this.$router.push({name:'BusinessDetail',params:{id:ID}});//类似post传参
+         },
+           //获取新闻详情信息
+        newsMore(ID){
+           this.$router.push({name:'NewsDetail',params:{id:ID}});//类似post传参
+        }
+        },
+        watch:{
+          '$route':{
+              handler(route){
+                  if(route.name==='/'){
+                      this.init();
+                  }
+              },
+              deep:true
+          }
+        },
+      created(){
+      this.init();
+    },
+
   components:{
 zjFooter,
 zjHeader

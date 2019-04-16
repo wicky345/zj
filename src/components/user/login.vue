@@ -1,10 +1,13 @@
 <template>
-    <div>
-        <el-button type="primary" @click="test()">查找</el-button>
-        <ul v-for="item in testMsg" :key="item.id">
+    <div class="login">
+        <!-- <el-button type="primary" @click="test()">查找</el-button> -->
+        <!-- <ul v-for="item in testMsg" :key="item.id">
             <li>{{item.name}}</li>
-        </ul>
+        </ul> -->
         <img src="/static/img/logoWhite.png">
+        <div class="clear"></div>
+        <div class="content">
+        <img src="/static/img/login.jpg" class="leftImg">
         <div id="loginmsg">
         <h3>欢迎登录</h3>
         <el-form ref="form" :model="form" label-width="80px">
@@ -12,7 +15,7 @@
             <el-input v-model="form.name"></el-input>
             </el-form-item>
             <el-form-item label="密码">
-            <el-input v-model="form.pass"></el-input>
+            <el-input v-model="form.pass" type="password"></el-input>
             </el-form-item>
             <el-form-item>
                 <el-button type="primary" class="el-button-primary" @click="onSubmit">登录</el-button>
@@ -20,6 +23,7 @@
             <h5 id="forgetPass">忘记密码？<a>点击找回</a></h5>
             <h5 id="register"><a>立即注册</a></h5>   
         </el-form>
+        </div>
         </div>
     </div>
 </template>
@@ -50,8 +54,20 @@ export default{
 }
 </script>
 <style>
-img{
+.login .clear{
+    clear:both;
+}
+.login img{
     float:left;
+}
+.login .content{
+    width:90%;
+    margin:0px auto;
+}
+.leftImg{
+    width:450px;
+    height:300px;
+    margin:80px 0px;
 }
 #loginmsg{
     width:400px;

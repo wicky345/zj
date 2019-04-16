@@ -19,7 +19,7 @@
        <el-submenu index="aboutus">
          <template slot="title">关于众基</template>
          <el-menu-item index="/introduction">公司简介</el-menu-item>
-         <el-menu-item index="/credit">荣誉展示</el-menu-item>
+         <el-menu-item index="/credit">公司荣誉</el-menu-item>
        </el-submenu>
         <el-submenu index="2"  >
          <template slot="title">企业动态</template>
@@ -29,6 +29,10 @@
           <el-menu-item index="/business" >业务领域</el-menu-item>  
          <el-menu-item index="4" >合作伙伴</el-menu-item>  
      </el-menu>
+      </div>
+      <div class="login">
+        <p><i class="el-icon-setting"></i>管理员登录</p>
+        <p><i class="el-icon-edit"></i>管理员登录</p>
       </div>
     </div>
   </div>
@@ -51,7 +55,7 @@
 .nav .nav-list .el-menu > .el-submenu .el-submenu__title:hover { width: 100px;margin:0px 20px;}
 .nav .el-menu{width: 100%; position: absolute; top: 80px; right: 0; background: transparent;}
 .nav .el-menu *{font-size: 18px;}
-
+.nav .login p{float:right;font-size:14px;}
 
 /*小屏幕*/
 @media screen and (min-width: 768px){

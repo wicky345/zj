@@ -1,6 +1,17 @@
 <template>
-<div>
-    <zj-header></zj-header>
+<div class="employ">
+<!--header部分-->
+<div class="header">
+  <img src="/static/img/logo.gif">
+  <ul class="employMenu">
+    <li id="list1"><router-link to="/" class="menu1">首页</router-link></li>
+    <li id="list2"><router-link to="/employ" class="menu2">招聘信息</router-link></li>
+    <li id="list3"><el-button round @click="register()">注册</el-button></li>
+    <li id="list4"><el-button type="primary" round @click="login()">登录</el-button></li>
+  </ul>
+
+</div>
+    
   <!-- banner部分 -->
   <div class="banner employ">
     <div class="title">
@@ -95,6 +106,12 @@ export default {
          },
       getMore(row){
        this.$router.push({name:'EmployDetail',params:{id:row.ID}});
+      },
+      login(){
+        this.$router.push('/login');
+      },
+      register(){
+        this.router.push('/');
       }
         },
         watch:{
@@ -118,6 +135,23 @@ components:{
 </script>
 
   <style>
+  .employ .header{width:100%;border-bottom:1px solid #ccc;height:74px}
+  .employ .header img{float:left;width:470px;height:74px;}
+  .employ .header .employMenu{float:right;margin:0px;}
+  .employ .header .employMenu li{height:74px;float:left;list-style:none;font-size:20px;color:#409eff;}
+  .employ .header .employMenu li:hover{height:74px;float:left;list-style:none;font-size:20px;color:#1989FA;}
+  .employ .header .employMenu  #list1{width:70px;margin:0px 5px;line-height:74px;}
+   .employ .header .employMenu  #list1 .menu1{width:70px;margin:0px 5px;line-height:74px;text-decoration:none;color:#1989fa;}
+   .employ .header .employMenu  #list1:hover{width:70px;margin:0px 5px;line-height:74px;border-bottom:3px solid #1989FA;}
+   .employ .header .employMenu  #list2{width:100px;margin:0px 60px 0px 5px;line-height:74px;}
+   .employ .header .employMenu  #list2 .menu2{line-height:74px;text-decoration:none;color:#1989fa;}
+      .employ .header .employMenu  #list2:hover{width:100px;margin:0px 60px 0px 5px;line-height:74px;border-bottom:3px solid #1989FA;}
+    .employ .header .employMenu  #list3{width:100px;margin:0px 5px;}
+    .employ .header .employMenu  #list3 .el-button{margin-top:18px;color:#409eff;border:1px solid #409eff;}
+     .employ .header .employMenu  #list4{width:100px;}
+     .employ .header .employMenu  #list4 .el-button{margin-top:18px;}
+   /* .employ .header .menu p{float:right;margin-right:90px;} */
+   .employ .header .user{height:74px;float:right;margin-right:5px;}
 .el-table th>.cell{text-align:center;}
   /*主体—招聘*/
 .main-employ{padding-top: 90px; padding-bottom: 130px;}
